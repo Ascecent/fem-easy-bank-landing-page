@@ -1,0 +1,14 @@
+{
+  "name": "easybank-landing-page-challenge",
+  "version": "1.0.0",
+  "description": "![Design preview for the Easybank landing page coding challenge](./design/desktop-preview.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass --style=compressed --no-source-map --watch app/scss:dist/css"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.44.0"
+  }
+}

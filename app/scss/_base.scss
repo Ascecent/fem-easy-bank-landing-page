@@ -1,0 +1,272 @@
+@use "sass:math";
+
+// -----------------------------
+// Functions
+// -----------------------------
+
+@function pxToRem($px) {
+  @return math.div($px, 16)+rem;
+}
+
+/* ==================================== 
+============ BASE STYLES ==============
+==================================== */
+
+// -----------------------------
+// Variables
+// -----------------------------
+
+// == BREAKPOINTS
+
+$breakpoints: ( // Pixels to rem
+  xsm: 540px,
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+  xlg: 1400px);
+
+// == COlORS
+
+// -Primary
+
+$darkBlue: hsl(233, 26%, 24%);
+$limeGreen: hsl(136, 65%, 51%);
+$brightCyan: hsl(192, 70%, 51%);
+
+// -Neutral
+
+$grayishBlue: hsl(233, 8%, 62%);
+$lightGrayishBlue: hsl(220, 16%, 96%);
+$veryLightGray: hsl(0, 0%, 98%);
+$white: hsl(0, 0%, 100%);
+$black: hsl(0, 0%, 0%);
+
+// == FONT SIZES
+
+$fontSm: pxToRem(14);
+$fontMd: pxToRem(18);
+
+$fontMainHeadingSm: pxToRem(34);
+$fontMainHeadingLg: pxToRem(49);
+
+$fontSecondaryHeadingSm: pxToRem(28);
+$fontSecondaryHeadingLg: pxToRem(35);
+
+$fontThirdHeadingSm: $fontSm;
+$fontThirdHeadingLg: pxToRem(22);
+
+// == PADDINGS
+
+// -Horizontal
+$paddingHorizontalSm: pxToRem(18);
+$paddingHorizontalLg: pxToRem(70);
+
+// -Vertical
+$paddingVerticalSm: pxToRem(70);
+$paddingVerticalLg: pxToRem(95);
+
+// -----------------------------
+// Mixins
+// -----------------------------
+
+@mixin gradient {
+  background: linear-gradient(to right, $limeGreen, $brightCyan);
+}
+
+@mixin media-breakpoint-up($breakpoint) {
+
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  }
+
+  @else {
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+@mixin media-breakpoint-down($breakpoint) {
+
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  }
+
+  @else {
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+// -----------------------------
+// Global styles
+// -----------------------------
+
+body {
+  font-family: "Public Sans", sans-serif;
+  font-weight: 300;
+  font-size: pxToRem(15);
+  color: $grayishBlue;
+  background-color: $veryLightGray;
+  overflow-x: hidden;
+}
+
+// -----------------------------
+// Utility classes
+// -----------------------------
+
+// Scrolling
+
+.no-vertical-scroll {
+  overflow-y: hidden;
+}
+
+// Flexbox
+.flex {
+  display: flex;
+
+  &-jc-sb {
+    justify-content: space-between;
+  }
+
+  &-jc-ev {
+    justify-content: space-evenly;
+  }
+
+  &-jc-c {
+    justify-content: center;
+  }
+
+  &-ai-c {
+    align-items: center;
+  }
+
+  &-d-c {
+    flex-direction: column;
+  }
+}
+
+// Margins
+// -Bottom
+.mb {
+  &_1 {
+    margin-bottom: 1rem;
+  }
+
+  &_1-5 {
+    margin-bottom: 1.5rem;
+  }
+
+  &_2 {
+    margin-bottom: 2rem;
+  }
+
+  &_2-5 {
+    margin-bottom: 2.5rem;
+  }
+
+  &_3 {
+    margin-bottom: 3rem;
+  }
+
+  &_3-5 {
+    margin-bottom: 3.5rem;
+  }
+
+  &_4 {
+    margin-bottom: 4rem;
+  }
+
+  &_4-5 {
+    margin-bottom: 4.5rem;
+  }
+
+  &_5 {
+    margin-bottom: 5rem;
+  }
+}
+
+// Visibility
+
+.hide-for-mobile {
+
+  // Hide for tablet and mobile devices viewport
+  @include media-breakpoint-down(md) {
+    display: none !important;
+  }
+}
+
+.hide-for-desktop {
+
+  // Hide for desktop viewport
+  @include media-breakpoint-up(md) {
+    display: none !important;
+  }
+}
+
+// Elements wrapping
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: pxToRem(1130);
+
+  &--px {
+    padding-right: $paddingHorizontalSm;
+    padding-left: $paddingHorizontalSm;
+  }
+
+  &--py {
+    padding-bottom: $paddingVerticalSm;
+    padding-top: $paddingVerticalSm;
+
+    @include media-breakpoint-up(lg) {
+      padding-bottom: $paddingVerticalLg;
+      padding-top: $paddingVerticalLg;
+    }
+  }
+
+  &--pb {
+    padding-bottom: $paddingVerticalSm;
+
+    @include media-breakpoint-up(lg) {
+      padding-bottom: $paddingVerticalLg;
+    }
+  }
+}
+
+// Headings
+
+.heading {
+  color: $darkBlue;
+  font-weight: 300;
+
+  &--primary {
+    font-size: clamp($fontMainHeadingSm, 5vw, $fontMainHeadingLg);
+    line-height: 1.15;
+  }
+
+  &--secondary {
+    font-size: clamp($fontSecondaryHeadingSm, 5vw, $fontSecondaryHeadingLg);
+  }
+
+  &--third {
+    font-size: clamp($fontThirdHeadingSm, 5vw, $fontThirdHeadingLg);
+  }
+}
