@@ -204,7 +204,7 @@ nav {
 
     &::before {
       content: '';
-      background: url(/images/bg-intro-mobile.svg) center/cover no-repeat;
+      background: url('../../images/bg-intro-mobile.svg') center/cover no-repeat;
       position: absolute;
       height: 100%;
       width: 100%;
@@ -212,14 +212,14 @@ nav {
       z-index: 0;
 
       @include media-breakpoint-up(lg) {
-        background: url('/images/bg-intro-desktop.svg') left 70%/cover no-repeat;
+        background: url('../../images/bg-intro-desktop.svg') left 70%/cover no-repeat;
         width: 170%;
       }
     }
 
     &::after {
       content: '';
-      background: url('/images/image-mockups.png') center bottom/93% no-repeat;
+      background: url('../../images/image-mockups.png') center bottom/93% no-repeat;
       position: absolute;
       height: 100%;
       width: 100%;
