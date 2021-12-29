@@ -7,14 +7,10 @@ This is a solution to the [Easybank landing page challenge on Frontend Mentor](h
 - [Overview](#overview)
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
-  - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -41,8 +37,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- [Solution URL](https://www.frontendmentor.io/solutions/easy-bank-landing-page-using-flexbox-grid-and-sass-bhypLuh_U)
+- [Live site URL](https://ascecent.github.io/fem-easy-bank-landing-page/)
 
 ## My process
 
@@ -61,4 +57,4 @@ In the way of building this website i've put in practice and gain experience usi
 
 ## Author
 
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/Ascecent)
+- Frontend Mentor - [@Ascecent](https://www.frontendmentor.io/profile/Ascecent)
